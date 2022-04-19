@@ -1,7 +1,5 @@
 name : Build
 
-description: CI/CD Build suite
-
 on:
   push:
     branches: [ main ]
@@ -13,4 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     container: "epitechcontent/epitest-docker:devel"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Build
+        run: make re
+
+      - name: Ensure binary is present a the root
+        run: |
+          if [ ! -f ./my_ftp ]; then
+            echo "epitest binary not found"
+            exit 1
+          fi
