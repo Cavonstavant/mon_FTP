@@ -1,0 +1,16 @@
+name : Build
+
+description: CI/CD Build suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: "epitechcontent/epitest-docker:devel"
+    steps:
+      - uses: actions/checkout@v2
