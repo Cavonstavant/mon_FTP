@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-NAME := libmy_malloc.so
+NAME := myftp
 
 $(NAME):
 	cmake .
