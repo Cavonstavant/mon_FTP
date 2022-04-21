@@ -54,7 +54,6 @@ int main(int ac, char **av)
     peer_t *tmp = NULL;
     int sockets_to_be_removed[FD_SETSIZE] = {0};
 
-    // char *buff = strdup("AAAAAAAAAAAAAAAAAAA");
     sigaddset(&sigmask, SIGINT);
     if (ac != 2) {
         fprintf(stderr, "Usage: %s <port>\n", av[0]);
