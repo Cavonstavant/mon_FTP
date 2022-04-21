@@ -19,7 +19,7 @@ jobs:
 
       - name: Ensure binary is present a the root
         run: |
-            if [ ! -f ./myftp ]; then
+          if [ ! -f ./myftp ]; then
             echo "epitest binary not found"
             exit 1
           fi

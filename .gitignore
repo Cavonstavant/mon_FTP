@@ -57,8 +57,9 @@ dkms.conf
 
 # project specific files
 build
-my_ftp
+myftp
 ftp_client
 FTP_RFC
 test_ftp.sh
 B-NWP-400_myFTP.pdf
+cmake-build-debug
