@@ -20,8 +20,13 @@
 
 /// \brief Represents a client connection
 typedef struct peer_s {
+    /// A file descriptor for the socket.
     int sock_fd;
+    /// The address of the client.
     struct sockaddr_in peer_addr;
+    // A pointer to a generic data type.
+    void *data;
+    /// A pointer to the next/prev peer.
     CIRCLEQ_ENTRY(peer_s) peers;
 } peer_t;
 
@@ -30,8 +35,8 @@ CIRCLEQ_HEAD(peers_head, peer_s);
 
 /// \brief Represents a basic tcp server
 typedef struct tcp_server_s {
-    uint16_t port;
     int sock_fd;
+    uint16_t port;
     struct sockaddr_in self;
     struct peers_head peers_head;
     fd_set read_fds;
