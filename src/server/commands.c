@@ -10,7 +10,7 @@
 #include "commands.h"
 #include <string.h>
 
-static const ftp_cmd known_commands[] = {
+static const ftp_cmd_t known_commands[] = {
     {.cmd = "USER", .min_args = 1, .max_args = 1},
     {.cmd = "PASS", .min_args = 1, .max_args = 1},
     {.cmd = "CWD", .min_args = 1, .max_args = 1},
@@ -25,10 +25,10 @@ static const ftp_cmd known_commands[] = {
     {.cmd = "RETR", .min_args = 1, .max_args = 1},
     {.cmd = "STOR", .min_args = 1, .max_args = 1},
     {.cmd = "LIST", .min_args = 0, .max_args = 1},
-    {0, 0, 0}
+    {0, 0, 0, 0, 0, 0}
 };
 
-ftp_cmd get_ftp_cmd_template(char *ftp_cmd)
+ftp_cmd_t get_ftp_cmd_template(char *ftp_cmd)
 {
     int i;
 
