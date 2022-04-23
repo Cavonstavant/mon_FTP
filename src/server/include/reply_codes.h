@@ -18,10 +18,10 @@ typedef struct reply_codes_s {
     int reply_code;
     char *msg;
     void *args;
-} fpt_rply_code;
+} ftp_rply_code;
 
 /// \brief get a reply code template by it's reply_code
 /// \param reply_code the reply code to fetch with
-fpt_rply_code get_rply_code_template(int reply_code);
+ftp_rply_code get_rply_code_template(int reply_code);
 
 #endif /* REPLY_CODES_H */
