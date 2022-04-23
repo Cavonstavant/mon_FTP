@@ -8,11 +8,13 @@ set(SRC
     ${SRC_ROOT}/ftp.c
     ${SRC_ROOT}/commands.c
     ${SRC_ROOT}/reply_codes.c
+    ${SRC_ROOT}/exec.c
 )
 
 add_executable(${TARGET} ${SRC})
 
 target_link_libraries(${TARGET} net_utils)
+
 target_include_directories(${TARGET}
     PRIVATE ${INCLUDE_ROOT}
     PUBLIC $<TARGET_PROPERTY:net_utils,PUBLIC_INCLUDE_DIRECTORIES>

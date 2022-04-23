@@ -64,3 +64,5 @@ test_ftp.sh
 B-NWP-400_myFTP.pdf
 cmake-build-debug
 peda*
+doc/
+graph/

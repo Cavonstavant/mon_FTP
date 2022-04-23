@@ -31,7 +31,8 @@ tcp_server_t *create_tcp_server(long port) {
     FD_ZERO(&server->read_fds);
     FD_ZERO(&server->write_fds);
     FD_SET(server->sock_fd, &server->read_fds);
-    // FD_SET(server->sock_fd, &server->write_fds);
+    FD_SET(server->sock_fd, &server->write_fds);
+    CIRCLEQ_INIT(&server->peers_head);
     CIRCLEQ_INIT(&server->peers_head);
     memset(server->sockets_to_be_removed, 0,
         sizeof(server->sockets_to_be_removed));

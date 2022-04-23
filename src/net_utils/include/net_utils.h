@@ -11,6 +11,7 @@
     #include <stdlib.h>
     #include <stdbool.h>
     #include <unistd.h>
+    #include "net_utils/auth/user.h"
 
     #define LISTEN_BACKLOG 50
     #define MAX_MSG 55555
@@ -33,12 +34,16 @@ typedef struct peer_s {
 /// \brief Initializes a circular queue of peers
 CIRCLEQ_HEAD(peers_head, peer_s);
 
+/// \brief Initializes a circular queue of users
+CIRCLEQ_HEAD(users_head, user_s);
+
 /// \brief Represents a basic tcp server
 typedef struct tcp_server_s {
     int sock_fd;
     uint16_t port;
     struct sockaddr_in self;
     struct peers_head peers_head;
+    struct users_head users_head;
     fd_set read_fds;
     fd_set write_fds;
     int sockets_to_be_removed[FD_SETSIZE];
