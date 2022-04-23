@@ -9,45 +9,45 @@
 
 #include "reply_codes.h"
 
-static const fpt_rply_code known_reply_codes[] = {
+static const ftp_rply_code known_reply_codes[] = {
     {.reply_code = 120,
-        .msg = "Service ready in %3d minutes.\n"},
+        .msg = "120 Service ready in %3d minutes.\r\n"},
     {.reply_code = 125,
-        .msg = "Data connection already open; transfer starting.\n"},
+        .msg = "125 Data connection already open; transfer starting.\r\n"},
     {.reply_code = 150,
-        .msg = "File status okay; about to open data connection.\n"},
+        .msg = "150 File status okay; about to open data connection.\r\n"},
     {.reply_code = 200,
-        .msg = "Command okay.\n"},
+        .msg = "200 Command okay.\r\n"},
     {.reply_code = 241,
-        .msg = "Help message.\nOn how to use the server or the meaning of a \
+        .msg = "241 Help message.\nOn how to use the server or the meaning of a \
             particular \
             non-standard command.\n\
-            This reply is useful only to the human user.\n"},
+            This reply is useful only to the human user.\r\n"},
     {.reply_code = 220,
-        .msg = "Service ready for new user.\n"},
+        .msg = "220 Service ready for new user.\r\n"},
     {.reply_code = 221,
         .msg = "Service closing control connection.\n \
-            Logged out if appropriate.\n"},
+            Logged out if appropriate.\r\n"},
     {.reply_code = 226,
-        .msg = "Closing data connection. \
+        .msg = "226 Closing data connection. \
             Requested file action successful (for example, file transfer or \
-            file abort).\n"},
+            file abort).\r\n"},
     {.reply_code = 227,
-        .msg = "Entering Passive Mode (h1,h2,h3,h4,p1,p2)."},
+        .msg = "227 Entering Passive Mode (h1,h2,h3,h4,p1,p2).\r\n"},
     {.reply_code = 230,
-        .msg = "User logged in, proceed."},
+        .msg = "230 User logged in, proceed.\r\n"},
     {.reply_code = 250,
-        .msg = "Requested file action okay, completed."},
+        .msg = "250 Requested file action okay, completed.\r\n"},
     {.reply_code = 257,
-        .msg = "\"%s\" created."},
+        .msg = "257 \"%s\" created."},
     {.reply_code = 331,
-        .msg = "User name okay, need password."},
+        .msg = "331 User name okay, need password.\r\n"},
     {.reply_code = 332,
-        .msg = "Need account for login."},
+        .msg = "332 Need account for login.\r\n"},
     {0, 0, 0}
 };
 
-fpt_rply_code get_rply_code_template(int reply_code)
+ftp_rply_code get_rply_code_template(int reply_code)
 {
     int i;
 
