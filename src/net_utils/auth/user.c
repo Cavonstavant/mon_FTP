@@ -7,7 +7,7 @@
 
 /// \file src/server/auth/user.c
 
-#include "user.h"
+#include "net_utils/auth/user.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -20,4 +20,16 @@ user_t *create_user(char *username, char *password)
     user->username = strdup(username);
     user->password = strdup(password);
     return (user);
+}
+
+bool authenticate_user(struct users_head users, char *uname, char *passwd)
+{
+    user_t *user = NULL;
+
+    CIRCLEQ_FOREACH(user, &users, users) {
+        if (strcmp(user->username, uname) == 0 &&
+            strcmp(user->password, passwd) == 0)
+            return (true);
+    }
+    return (false);
 }

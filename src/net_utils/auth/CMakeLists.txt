@@ -1,4 +1,4 @@
-set (INCLUDE_ROOT ${PROJECT_SOURCE_DIR}/src/net_utils/auth/include)
+set (INCLUDE_ROOT ${PROJECT_SOURCE_DIR}/src/net_utils/include)
 set (SRC_ROOT ${PROJECT_SOURCE_DIR}/src/net_utils/auth)
 
 set (TARGET_NAME net_utils_auth)

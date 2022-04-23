@@ -34,9 +34,6 @@ typedef struct peer_s {
 /// \brief Initializes a circular queue of peers
 CIRCLEQ_HEAD(peers_head, peer_s);
 
-/// \brief Initializes a circular queue of users
-CIRCLEQ_HEAD(users_head, user_s);
-
 /// \brief Represents a basic tcp server
 typedef struct tcp_server_s {
     int sock_fd;
@@ -68,5 +65,12 @@ void display_clients(struct peers_head *peers_head);
 /// \brief Create a TCP server
 /// \param port Port to listen on
 tcp_server_t *create_tcp_server(long port);
+
+/// \brief Add a user to the server.
+/// \param srv The server to add the user to.
+/// \param username The username of the user to add.
+/// \param password The password of the user to add.
+/// \warning The password is inserted 'as is' inside the server
+bool add_user_to_server(tcp_server_t *srv, char *username, char *password);
 
 #endif //NET_UTILS_H
