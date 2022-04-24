@@ -24,7 +24,7 @@ typedef struct ftp_data_s {
     /// The reply code with a message sent to the client after the exec cmd
     ftp_rply_code *reply_code;
     /// The auth data
-    user_t *user;
+    user_t *auth;
 } ftp_data_t ;
 
 int run_server(tcp_server_t *srv);

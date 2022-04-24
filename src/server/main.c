@@ -24,5 +24,6 @@ int main(int ac, char **av)
         exit(84);
     }
     add_user_to_server(ftp_server, "Anonymous", "");
+    ftp_server->arbitrary_data = (void*)av[2];
     return (run_server(ftp_server));
 }

@@ -9,6 +9,19 @@
 #include "commands.h"
 #include "reply_codes.h"
 
+static ftp_data_t* fill_client_data(void *data)
+{
+    ftp_data_t *ftp_data = NULL;
+
+    if (!(ftp_data = (ftp_data_t*)malloc(sizeof(ftp_data_t))))
+        HANDLE_ERROR("malloc");
+    ftp_data->cmd = NULL;
+    ftp_data->reply_code = NULL;
+    ftp_data->auth = NULL;
+    ftp_data->cwd = (char*)data;
+    return (ftp_data);
+}
+
 static peer_t *accept_client(tcp_server_t *srv)
 {
     peer_t *new_client = NULL;
@@ -25,7 +38,7 @@ static peer_t *accept_client(tcp_server_t *srv)
     if (new_client == NULL)
         HANDLE_ERROR("peer_create");
     FD_SET(client_fd, &srv->read_fds);
-    new_client->data = malloc(sizeof(ftp_data_t));
+    new_client->data = fill_client_data(srv->arbitrary_data);
     return (new_client);
 }
 

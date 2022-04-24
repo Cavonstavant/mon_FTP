@@ -29,4 +29,7 @@ typedef struct ftp_command_s {
 /// \param cmd the reply cmd to fetch with
 ftp_cmd_t get_ftp_cmd_template(char *ftp_cmd);
 
+/// \brief memset a ftp command
+ftp_cmd_t *memset_ftp_cmd(ftp_cmd_t *ftp_cmd, char *cmd);
+
 #endif /* COMMANDS_H */

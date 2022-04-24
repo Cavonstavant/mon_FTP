@@ -36,3 +36,5 @@ user_t *create_user(char *username, char *password);
 /// \param password the password of the user
 /// \return true or false depending on the authentication result
 bool authenticate_user(struct users_head users, char *uname, char *passwd);
+
+#endif /* USER_H */

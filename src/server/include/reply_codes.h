@@ -24,4 +24,7 @@ typedef struct reply_codes_s {
 /// \param reply_code the reply code to fetch with
 ftp_rply_code get_rply_code_template(int reply_code);
 
+/// \brief memset a reply code
+ftp_rply_code *memset_ftp_rply_code(ftp_rply_code *rply_code, int code);
+
 #endif /* REPLY_CODES_H */

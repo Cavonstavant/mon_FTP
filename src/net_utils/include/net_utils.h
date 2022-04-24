@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2022
+** mon_FTP
+** File description:
+** net_utils
+*/
+
 #ifndef NET_UTILS_H
 #define NET_UTILS_H
 
@@ -45,10 +52,11 @@ typedef struct tcp_server_s {
     fd_set write_fds;
     int sockets_to_be_removed[FD_SETSIZE];
     bool state;
+    void *arbitrary_data;
 } tcp_server_t;
 
 #define HANDLE_ERROR(msg) \
-    do {perror(msg); exit(EXIT_FAILURE);} while(0)
+    do {perror(msg); exit(EXIT_FAILURE);} while (0)
 
 /// \brief Creates a new client
 /// \param sock_fd The client file descriptor
