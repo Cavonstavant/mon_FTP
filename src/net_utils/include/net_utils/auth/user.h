@@ -17,6 +17,7 @@
 typedef struct user_s {
     char *username;
     char *password;
+    bool logged_in;
     CIRCLEQ_ENTRY(user_s) users;
 } user_t;
 

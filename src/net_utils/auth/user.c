@@ -17,8 +17,9 @@ user_t *create_user(char *username, char *password)
 
     if (!user)
         return (NULL);
-    user->username = strdup(username);
-    user->password = strdup(password);
+    user->username = (username ? strdup(username) : NULL);
+    user->password = (password ? strdup(password) : NULL);
+    user->logged_in = false;
     return (user);
 }
 

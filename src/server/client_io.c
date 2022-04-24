@@ -5,41 +5,40 @@
 ** read_write
 */
 
+#include <string.h>
+#include <stdlib.h>
 #include "myftp.h"
 #include "reply_codes.h"
 #include "commands.h"
 
 int read_from_client(peer_t *client)
 {
-    char *line = NULL;
-    size_t to_read;
+    char *line = malloc(sizeof(char) * (MAX_MSG + 1));
     ssize_t read_size;
-    FILE *client_stream = fdopen(client->sock_fd, "r");
     ftp_data_t *data = client->data;
 
-    read_size = getdelim(&line, &to_read, '\r', client_stream);
-    if (read_size < 0){
-        perror("read");
-        return (-1);
-    }
+    if (!line)
+        HANDLE_ERROR("malloc");
+    read_size = read(client->sock_fd, line, MAX_MSG);
+    if (read_size < 0)
+        HANDLE_ERROR("read");
     if (read_size == 0)
         return -1;
-    else {
-        data = parse_cmd_line(line);
-        if (!data->cmd->cmd) {
-            dprintf(client->sock_fd, data->cmd->err_msg);
-            return (-1);
-        }
+    data = parse_cmd_line(strtok(line, "\r\n"));
+    if (!data->cmd->cmd) {
+        dprintf(client->sock_fd, data->cmd->err_msg);
+        return (-1);
     }
+    client->data = data;
     return (0);
 }
 
-int write_to_client(peer_t *client)
+int write_to_client(tcp_server_t *srv, peer_t *client)
 {
     ftp_data_t *data = client->data;
-    char *reply_msg = NULL;
 
-    reply_msg = data->reply_code->msg;
-    dprintf(client->sock_fd, reply_msg);
+    data = exec_cmd(srv, client);
+    if (data->reply_code->msg)
+        dprintf(client->sock_fd, data->reply_code->msg);
     return (0);
 }

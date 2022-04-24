@@ -48,6 +48,8 @@ static const ftp_rply_code known_reply_codes[] = {
         .msg = "332 Need account for login.\r\n"},
     {.reply_code = 501,
         .msg = "501 Syntax error in parameters or arguments.\r\n"},
+    {.reply_code = 430,
+        .msg = "430 Invalid username or password.\r\n"},
     {0, 0, 0}
 };
 
@@ -66,6 +68,8 @@ ftp_rply_code *memset_ftp_rply_code(ftp_rply_code *reply_code,
 {
     ftp_rply_code rply_template = get_rply_code_template(code);
 
+    if (reply_code)
+        free(reply_code);
     reply_code = malloc(sizeof(reply_code));
     reply_code->reply_code = code;
     reply_code->msg = rply_template.msg;

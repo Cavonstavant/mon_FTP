@@ -61,6 +61,7 @@ myftp
 ftp_client
 FTP_RFC
 test_ftp.sh
+bonjour.sh
 B-NWP-400_myFTP.pdf
 cmake-build-debug
 peda*

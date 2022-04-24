@@ -31,7 +31,7 @@ ftp_data_t *parse_cmd_line(char *cmd)
 {
     ftp_data_t *data = NULL;
     char *token = NULL;
-    char *sep = " \r\n";
+    char *sep = " ";
 
     if (!(data = malloc(sizeof(ftp_data_t))))
         return (NULL);
@@ -39,14 +39,13 @@ ftp_data_t *parse_cmd_line(char *cmd)
     token = strtok(cmd, sep);
     set_arg(data, token);
     for (int i = 0; (token = strtok(NULL, sep)); i++) {
+        printf("%s\n", token);
         if (i > data->cmd->max_args) {
             fprintf(stderr, data->cmd->err_msg);
             data->reply_code = memset_ftp_rply_code(data->reply_code, 501);
             return (data);
         }
         set_arg(data, token);
-        if (!data->cmd)
-            return (data);
     }
-    return (exec_cmd(data));
+    return (data);
 }
