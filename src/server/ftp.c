@@ -44,15 +44,15 @@ static peer_t *accept_client(tcp_server_t *srv)
 
 int run_server(tcp_server_t *srv)
 {
-    fd_set tmp_read_fd_set, tmp_write_fd_set;
+    fd_set tmp_rfds, tmp_wfds;
     peer_t *new_peer = NULL;
 
     while (srv->state == RUNNING) {
-        tmp_read_fd_set = srv->read_fds;
-        if (pselect(FD_SETSIZE, &tmp_read_fd_set,
-            NULL, NULL, NULL, NULL) < 0)
+        restore_fd_sets(&tmp_rfds, &tmp_wfds, &srv->read_fds, &srv->write_fds);
+        if (pselect(FD_SETSIZE, &tmp_rfds, &tmp_wfds,
+            NULL, NULL, NULL) < 0)
             HANDLE_ERROR("pselect");
-        if (FD_ISSET(srv->sock_fd, &tmp_read_fd_set)) {
+        if (FD_ISSET(srv->sock_fd, &tmp_rfds)) {
             new_peer = accept_client(srv);
             if (new_peer == NULL){
                 fprintf(stderr, "Internal Error: could not accept client.\n");
@@ -61,7 +61,7 @@ int run_server(tcp_server_t *srv)
                 dprintf(new_peer->sock_fd, get_rply_code_template(220).msg);
             CIRCLEQ_INSERT_HEAD(&srv->peers_head, new_peer, peers);
         } else
-            exec_ftp_cmd(srv);
+            exec_ftp_cmd(srv, &tmp_rfds, &tmp_wfds);
     }
     return (0);
 }

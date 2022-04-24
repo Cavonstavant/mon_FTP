@@ -9,6 +9,8 @@ set(SRC
     ${SRC_ROOT}/commands.c
     ${SRC_ROOT}/reply_codes.c
     ${SRC_ROOT}/exec.c
+    ${SRC_ROOT}/client_io.c
+    ${SRC_ROOT}/parse_cmd.c
 )
 
 add_executable(${TARGET} ${SRC})

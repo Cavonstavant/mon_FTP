@@ -8,6 +8,7 @@ set (SRC
      ${SRC_ROOT}/tcp_server.c
      ${SRC_ROOT}/remove_unused_sockets.c
      ${SRC_ROOT}/peer.c
+     ${SRC_ROOT}/fd_set_manage.c
 )
 
 add_library(${TARGET_NAME} ${SRC})

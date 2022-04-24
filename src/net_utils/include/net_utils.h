@@ -81,4 +81,13 @@ tcp_server_t *create_tcp_server(long port);
 /// \warning The password is inserted 'as is' inside the server
 bool add_user_to_server(tcp_server_t *srv, char *username, char *password);
 
+/// \brief Restore read and write fd sets to their state
+/// before calling select / pselect
+/// \param read_fds The read fd set to restore
+/// \param write_fds The write fd set to restore
+/// \param read_save The saverd read fds
+/// \param write_save The saved write fds
+void restore_fd_sets(fd_set *read_fds, fd_set *write_fds,
+    fd_set *read_save, fd_set *write_save);
+
 #endif //NET_UTILS_H
