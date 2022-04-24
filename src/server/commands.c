@@ -12,19 +12,19 @@
 
 static const ftp_cmd_t known_commands[] = {
     {.cmd = "USER", .min_args = 1, .max_args = 1, .func = exec_user},
-    {.cmd = "PASS", .min_args = 1, .max_args = 1, .func = 0},
-    {.cmd = "CWD", .min_args = 1, .max_args = 1, .func = 0},
-    {.cmd = "CDUP", .min_args = 0, .max_args = 0, .func = 0},
-    {.cmd = "QUIT", .min_args = 0, .max_args = 0, .func = 0},
-    {.cmd = "PWD", .min_args = 0, .max_args = 0, .func = 0},
-    {.cmd = "NOOP", .min_args = 0, .max_args = 0, .func = 0},
-    {.cmd = "PASV", .min_args = 0, .max_args = 0, .func = 0},
-    {.cmd = "DELE", .min_args = 1, .max_args = 1, .func = 0},
-    {.cmd = "PORT", .min_args = 1, .max_args = 1, .func = 0},
-    {.cmd = "HELP", .min_args = 0, .max_args = 1, .func = 0},
-    {.cmd = "RETR", .min_args = 1, .max_args = 1, .func = 0},
-    {.cmd = "STOR", .min_args = 1, .max_args = 1, .func = 0},
-    {.cmd = "LIST", .min_args = 0, .max_args = 1, .func = 0},
+    {.cmd = "PASS", .min_args = 1, .max_args = 1, .func = exec_pass},
+    {.cmd = "CWD", .min_args = 1, .max_args = 1, .func = default_cmd},
+    {.cmd = "CDUP", .min_args = 0, .max_args = 0, .func = default_cmd},
+    {.cmd = "QUIT", .min_args = 0, .max_args = 0, .func = default_cmd},
+    {.cmd = "PWD", .min_args = 0, .max_args = 0, .func = default_cmd},
+    {.cmd = "NOOP", .min_args = 0, .max_args = 0, .func = default_cmd},
+    {.cmd = "PASV", .min_args = 0, .max_args = 0, .func = default_cmd},
+    {.cmd = "DELE", .min_args = 1, .max_args = 1, .func = default_cmd},
+    {.cmd = "PORT", .min_args = 1, .max_args = 1, .func = default_cmd},
+    {.cmd = "HELP", .min_args = 0, .max_args = 1, .func = default_cmd},
+    {.cmd = "RETR", .min_args = 1, .max_args = 1, .func = default_cmd},
+    {.cmd = "STOR", .min_args = 1, .max_args = 1, .func = default_cmd},
+    {.cmd = "LIST", .min_args = 0, .max_args = 1, .func = default_cmd},
     {0, 0, 0, 0, 0, 0, 0}
 };
 

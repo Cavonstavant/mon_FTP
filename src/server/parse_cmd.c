@@ -39,7 +39,6 @@ ftp_data_t *parse_cmd_line(char *cmd)
     token = strtok(cmd, sep);
     set_arg(data, token);
     for (int i = 0; (token = strtok(NULL, sep)); i++) {
-        printf("%s\n", token);
         if (i > data->cmd->max_args) {
             fprintf(stderr, data->cmd->err_msg);
             data->reply_code = memset_ftp_rply_code(data->reply_code, 501);

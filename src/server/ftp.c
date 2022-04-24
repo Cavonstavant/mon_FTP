@@ -57,8 +57,9 @@ int run_server(tcp_server_t *srv)
             if (new_peer == NULL){
                 fprintf(stderr, "Internal Error: could not accept client.\n");
                 continue;
-            } else
+            } else {
                 dprintf(new_peer->sock_fd, get_rply_code_template(220).msg);
+            }
             CIRCLEQ_INSERT_HEAD(&srv->peers_head, new_peer, peers);
         } else
             exec_ftp_cmd(srv, &tmp_rfds, &tmp_wfds);
