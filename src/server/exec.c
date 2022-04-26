@@ -13,18 +13,14 @@
 #include "myftp.h"
 
 
-ftp_data_t *exec_cmd(tcp_server_t *src, peer_t *client)
+void exec_cmd(tcp_server_t **srv, peer_t **client)
 {
-    ftp_data_t *ret = client->data;
+    ftp_data_t *ret = (*client)->data;
 
-    if (ret->cmd == NULL) {
+    if (ret->cmd == NULL)
         ret->reply_code = memset_ftp_rply_code(ret->reply_code, 501);
-        return (ret);
-    }
     if (ret->cmd->func)
-        ret->cmd->func(src, client);
-    client->data = ret;
-    return (ret);
+        ret->cmd->func(srv, client);
 }
 
 static int exec_read(tcp_server_t *srv, peer_t *client, fd_set *read_fds)
@@ -40,12 +36,12 @@ static int exec_read(tcp_server_t *srv, peer_t *client, fd_set *read_fds)
     return (0);
 }
 
-static int exec_write(tcp_server_t *srv, peer_t *client, fd_set *write_fds)
+static int exec_write(tcp_server_t **srv, peer_t **client, fd_set *write_fds)
 {
     if (write_to_client(srv, client) == -1) {
-        FD_CLR(client->sock_fd, &srv->write_fds);
-        close(client->sock_fd);
-        srv->sockets_to_be_removed[client->sock_fd] = 1;
+        FD_CLR((*client)->sock_fd, &(*srv)->write_fds);
+        close((*client)->sock_fd);
+        (*srv)->sockets_to_be_removed[(*client)->sock_fd] = 1;
         return (1);
     }
     return (0);
@@ -58,7 +54,7 @@ void exec_ftp_cmd(tcp_server_t *srv, fd_set *tmp_reafds, fd_set *tmp_writefds)
     CIRCLEQ_FOREACH(tmp, &srv->peers_head, peers) {
         if (exec_read(srv, tmp, tmp_reafds))
             continue;
-        if (exec_write(srv, tmp, tmp_writefds))
+        if (exec_write(&srv, &tmp, tmp_writefds))
             continue;
     }
     remove_unused_sockets(&srv->peers_head, srv->sockets_to_be_removed);

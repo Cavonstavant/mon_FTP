@@ -24,7 +24,7 @@ int read_from_client(peer_t *client)
         HANDLE_ERROR("read");
     if (read_size == 0)
         return -1;
-    data = parse_cmd_line(strtok(line, "\n"));
+    parse_cmd_line(data, strtok(line, "\n"));
     if (!data->cmd->cmd) {
         dprintf(client->sock_fd, data->cmd->err_msg);
         return (-1);
@@ -33,13 +33,10 @@ int read_from_client(peer_t *client)
     return (0);
 }
 
-int write_to_client(tcp_server_t *srv, peer_t *client)
+int write_to_client(tcp_server_t **srv, peer_t **client)
 {
-    ftp_data_t *data = client->data;
-
-    data = exec_cmd(srv, client);
-    client->data = data;
-    if (data->reply_code->msg)
-        dprintf(client->sock_fd, data->reply_code->msg);
+    exec_cmd(srv, client);
+    if (((ftp_data_t*)(*client)->data)->reply_code->msg)
+        dprintf((*client)->sock_fd, ((ftp_data_t*)(*client)->data)->reply_code->msg);
     return (0);
 }

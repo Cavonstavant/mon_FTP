@@ -27,24 +27,32 @@ static void set_arg(ftp_data_t *data, char *token)
     }
 }
 
-ftp_data_t *parse_cmd_line(char *cmd)
+void reset_cmd_and_rply(ftp_data_t **data)
 {
-    ftp_data_t *data = NULL;
+    if ((*data)->reply_code && (*data)->reply_code->msg)
+    if ((*data)->cmd && (*data)->cmd->cmd){
+        (*data)->cmd->cmd = NULL;
+    }
+    for (int i = 0; (*data)->cmd && (*data)->cmd->args[i]; i++) {
+        (*data)->cmd->args[i] = NULL;
+    }
+    (*data)->cmd = NULL;
+}
+
+void parse_cmd_line(ftp_data_t *data, char *cmd)
+{
     char *token = NULL;
     char *sep = " ";
 
-    if (!(data = malloc(sizeof(ftp_data_t))))
-        return (NULL);
-    bzero(data, sizeof(ftp_data_t));
+    if (data && data->cmd && data->reply_code)
+        reset_cmd_and_rply(&data);
     token = strtok(cmd, sep);
     set_arg(data, token);
     for (int i = 0; (token = strtok(NULL, sep)); i++) {
         if (i > data->cmd->max_args) {
             fprintf(stderr, data->cmd->err_msg);
             data->reply_code = memset_ftp_rply_code(data->reply_code, 501);
-            return (data);
         }
         set_arg(data, token);
     }
-    return (data);
 }

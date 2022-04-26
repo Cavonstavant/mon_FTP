@@ -10,17 +10,17 @@
 #include "commands.h"
 #include "reply_codes.h"
 
-static inline bool check_if_passwd_set(peer_t *client)
+static inline bool check_if_passwd_set(peer_t **client)
 {
-    ftp_data_t *data = client->data;
+    ftp_data_t *data = (*client)->data;
 
     return (data->auth->password != NULL);
 }
 
-void exec_user(tcp_server_t *srv __attribute__((unused)),
-    peer_t *client __attribute__((unused)))
+void exec_user(tcp_server_t **srv __attribute__((unused)),
+    peer_t **client __attribute__((unused)))
 {
-    ftp_data_t *data = client->data;
+    ftp_data_t *data = (*client)->data;
 
     if (data->cmd->args[0] == NULL) {
         data->reply_code = memset_ftp_rply_code(data->reply_code, 501);
@@ -39,5 +39,5 @@ void exec_user(tcp_server_t *srv __attribute__((unused)),
         }
     } else
         data->reply_code = memset_ftp_rply_code(data->reply_code, 430);
-    client->data = data;
+    (*client)->data = data;
 }

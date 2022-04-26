@@ -33,10 +33,10 @@ void exec_ftp_cmd(tcp_server_t *srv, fd_set *tmp_reafds, fd_set *tmp_writefds);
 
 int read_from_client(peer_t *client);
 
-int write_to_client(tcp_server_t *srv, peer_t *client);
+int write_to_client(tcp_server_t **srv, peer_t **client);
 
-ftp_data_t *parse_cmd_line(char *cmd);
+void parse_cmd_line(ftp_data_t* data, char *cmd);
 
-ftp_data_t *exec_cmd(tcp_server_t *srv, peer_t *client);
+void exec_cmd(tcp_server_t **srv, peer_t **client);
 
 #endif /* MYFTP_H */

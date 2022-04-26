@@ -25,7 +25,7 @@ typedef struct ftp_command_s {
     char **args;
     char *err_msg;
     int reply_code;
-    void (*func)(tcp_server_t *, peer_t *);
+    void (*func)(tcp_server_t **, peer_t **);
 } ftp_cmd_t;
 
 /// \brief get a ftp command template by it's command name
@@ -35,10 +35,10 @@ ftp_cmd_t get_ftp_cmd_template(char *ftp_cmd);
 /// \brief memset a ftp command
 ftp_cmd_t *memset_ftp_cmd(ftp_cmd_t *ftp_cmd, char *cmd);
 
-void exec_user(tcp_server_t *srv, peer_t *client);
-void exec_pass(tcp_server_t *srv, peer_t *client);
-void default_cmd(tcp_server_t *srv __attribute__((unused)),
-    peer_t *client __attribute__((unused)));
+void exec_user(tcp_server_t **srv, peer_t **client);
+void exec_pass(tcp_server_t **srv, peer_t **client);
+void default_cmd(tcp_server_t **srv __attribute__((unused)),
+    peer_t **client __attribute__((unused)));
 
 
 #endif /* COMMANDS_H */
