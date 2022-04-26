@@ -39,4 +39,6 @@ void parse_cmd_line(ftp_data_t* data, char *cmd);
 
 void exec_cmd(tcp_server_t **srv, peer_t **client);
 
+bool cwd_exists(char *path);
+
 #endif /* MYFTP_H */

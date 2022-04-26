@@ -56,7 +56,7 @@ typedef struct tcp_server_s {
 } tcp_server_t;
 
     #define HANDLE_ERROR(msg) \
-        do {perror(msg); exit(EXIT_FAILURE);} while (0)
+        do {perror(msg); exit(84);} while (0)
 
 /// \brief Creates a new client
 /// \param sock_fd The client file descriptor

@@ -54,11 +54,21 @@ static bool manage_new_conn(tcp_server_t *srv, fd_set *read_fs, peer_t *new)
     CIRCLEQ_INSERT_HEAD(&srv->peers_head, new, peers);
 }
 
+bool cwd_exists(char *path)
+{
+    if (!path)
+        return (false);
+    if (access(path, F_OK | W_OK | R_OK) == -1)
+        HANDLE_ERROR("access");
+    return (true);
+}
+
 int run_server(tcp_server_t *srv)
 {
     fd_set tmp_rfds, tmp_wfds;
     peer_t *new_peer = NULL;
 
+    cwd_exists((char*)srv->arbitrary_data);
     while (srv->state == RUNNING) {
         restore_fd_sets(&tmp_rfds, &tmp_wfds, &srv->read_fds, &srv->write_fds);
         if (pselect(FD_SETSIZE, &tmp_rfds, &tmp_wfds,
