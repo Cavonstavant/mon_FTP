@@ -48,6 +48,8 @@ static const ftp_rply_code known_reply_codes[] = {
         .msg = "332 Need account for login.\r\n"},
     {.reply_code = 501,
         .msg = "501 Syntax error in parameters or arguments.\r\n"},
+    {.reply_code = 530,
+        .msg = "530 Not logged in.\r\n"},
     {.reply_code = 430,
         .msg = "430 Invalid username or password.\r\n"},
     {0, 0, 0}

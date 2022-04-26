@@ -16,7 +16,7 @@ static const ftp_cmd_t known_commands[] = {
     {.cmd = "CWD", .min_args = 1, .max_args = 1, .func = default_cmd},
     {.cmd = "CDUP", .min_args = 0, .max_args = 0, .func = default_cmd},
     {.cmd = "QUIT", .min_args = 0, .max_args = 0, .func = default_cmd},
-    {.cmd = "PWD", .min_args = 0, .max_args = 0, .func = default_cmd},
+    {.cmd = "PWD", .min_args = 0, .max_args = 0, .func = exec_pwd},
     {.cmd = "NOOP", .min_args = 0, .max_args = 0, .func = default_cmd},
     {.cmd = "PASV", .min_args = 0, .max_args = 0, .func = default_cmd},
     {.cmd = "DELE", .min_args = 1, .max_args = 1, .func = default_cmd},

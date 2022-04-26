@@ -37,6 +37,7 @@ ftp_cmd_t *memset_ftp_cmd(ftp_cmd_t *ftp_cmd, char *cmd);
 
 void exec_user(tcp_server_t **srv, peer_t **client);
 void exec_pass(tcp_server_t **srv, peer_t **client);
+void exec_pwd(tcp_server_t **srv, peer_t **client);
 void default_cmd(tcp_server_t **srv __attribute__((unused)),
     peer_t **client __attribute__((unused)));
 

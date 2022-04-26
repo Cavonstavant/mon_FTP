@@ -8,6 +8,8 @@ set(TARGET ${PROJECT_NAME})
 set(FTP_CMD_SRC
     ${FTP_CMDS_SRC_ROOT}/user/user.c
     ${FTP_CMDS_SRC_ROOT}/pass/pass.c
+    ${FTP_CMDS_SRC_ROOT}/pwd/pwd.c
+    ${FTP_CMDS_SRC_ROOT}/noop/noop.c
     ${FTP_CMDS_SRC_ROOT}/default.c
 )
 
