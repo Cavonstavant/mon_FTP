@@ -8,7 +8,7 @@
 /// \file src/net_utils/include/net_utils/auth/user.h
 
 #ifndef USER_H
-#define USER_H
+    #define USER_H
 
     #include <unistd.h>
     #include <sys/queue.h>

@@ -7,7 +7,8 @@
 
 #include "net_utils.h"
 
-static void bind_and_listen_on_socket(tcp_server_t *srv, long port) {
+static void bind_and_listen_on_socket(tcp_server_t *srv, long port)
+{
     srv->sock_fd = socket(PF_INET, SOCK_STREAM, 0);
     if (srv->sock_fd < 0)
         HANDLE_ERROR("socket");
@@ -33,7 +34,8 @@ bool add_user_to_server(tcp_server_t *srv, char *username, char *password)
     return (true);
 }
 
-tcp_server_t *create_tcp_server(long port) {
+tcp_server_t *create_tcp_server(long port)
+{
     tcp_server_t *server = malloc(sizeof(tcp_server_t));
 
     if (server == NULL)

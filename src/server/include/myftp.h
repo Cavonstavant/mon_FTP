@@ -8,7 +8,7 @@
 /// \file src/server/exec.c
 
 #ifndef MYFTP_H
-#define MYFTP_H
+    #define MYFTP_H
 
     #include "net_utils.h"
     #include "commands.h"

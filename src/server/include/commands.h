@@ -8,7 +8,7 @@
 /// \file src/server/commands.h
 
 #ifndef COMMANDS_H
-#define COMMANDS_H
+    #define COMMANDS_H
 
     #include "net_utils.h"
 

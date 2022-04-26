@@ -9,7 +9,8 @@
 
 #include "net_utils.h"
 
-void display_clients(struct peers_head *peers_head) {
+void display_clients(struct peers_head *peers_head)
+{
     peer_t *tmp = NULL;
 
     printf("\n\nList of connected clients:\n/*----------------------*/\n");

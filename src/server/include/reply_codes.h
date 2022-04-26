@@ -8,7 +8,7 @@
 /// \file src/server/reply_codes.h
 
 #ifndef REPLY_CODES_H
-#define REPLY_CODES_H
+    #define REPLY_CODES_H
 
 /// \brief maps a ftp reply code to a message
 /// \note Base values are declared inside reply_codes.c
