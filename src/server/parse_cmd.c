@@ -42,7 +42,7 @@ void reset_cmd_and_rply(ftp_data_t **data)
 void parse_cmd_line(ftp_data_t *data, char *cmd)
 {
     char *token = NULL;
-    char *sep = " ";
+    char *sep = " \r\n";
 
     if (data && data->cmd && data->reply_code)
         reset_cmd_and_rply(&data);

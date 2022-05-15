@@ -38,7 +38,7 @@ tcp_server_t *create_tcp_server(long port)
 {
     tcp_server_t *server = malloc(sizeof(tcp_server_t));
 
-    if (server == NULL)
+    if (!server)
         HANDLE_ERROR("malloc");
     server->port = htons(port);
     bind_and_listen_on_socket(server, port);

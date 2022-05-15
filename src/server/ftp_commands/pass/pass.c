@@ -28,14 +28,11 @@ void exec_pass(tcp_server_t **srv __attribute__((unused)),
     }
     if (data->auth->logged_in)
         return;
-    if (data->cmd->args[0] == NULL) {
-        if (!check_if_uname_set(client))
-            data->reply_code = memset_ftp_rply_code(data->reply_code, 332);
-        else {
-            data->reply_code = memset_ftp_rply_code(data->reply_code, 230);
-            data->auth->logged_in = true;
-        }
-    } else
-        data->reply_code = memset_ftp_rply_code(data->reply_code, 430);
+    if (!check_if_uname_set(client))
+        data->reply_code = memset_ftp_rply_code(data->reply_code, 332);
+    else {
+        data->reply_code = memset_ftp_rply_code(data->reply_code, 230);
+        data->auth->logged_in = true;
+    }
     (*client)->data = data;
 }

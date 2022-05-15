@@ -14,9 +14,10 @@ void display_clients(struct peers_head *peers_head)
     peer_t *tmp = NULL;
 
     printf("\n\nList of connected clients:\n/*----------------------*/\n");
-    CIRCLEQ_FOREACH(tmp, peers_head, peers)printf(" - %s:%hu on socket: %d\n",
-        inet_ntoa(tmp->peer_addr.sin_addr),
-        ntohs(tmp->peer_addr.sin_port), tmp->sock_fd);
+    CIRCLEQ_FOREACH(tmp, peers_head, peers)
+        printf(" - %s:%hu on socket: %d\n",
+            inet_ntoa(tmp->peer_addr.sin_addr),
+            ntohs(tmp->peer_addr.sin_port), tmp->sock_fd);
     printf("/*----------------------*/\n");
 }
 

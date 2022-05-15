@@ -30,7 +30,7 @@ void exec_user(tcp_server_t **srv __attribute__((unused)),
         data->auth = create_user(data->cmd->args[0], NULL);
     if (data->auth->logged_in)
         return;
-    if (strcmp(data->cmd->args[0], "Anonymous") == 0){
+    if (strncmp(data->cmd->args[0], "Anonymous", strlen("Anonymous")) == 0){
         if (!check_if_passwd_set(client))
             data->reply_code = memset_ftp_rply_code(data->reply_code, 331);
         else {
